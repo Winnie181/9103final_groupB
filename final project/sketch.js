@@ -1,16 +1,16 @@
 let myCircles = [];// Array to store circle
 let numOfCircles = 33;// Number of circles
 let bgImage; // Background image
-let bottomX = 111; // X position of the first semicircle
-let bottomY = 494;  // Y position of semicircles at the bottom 
-let diameter1 = 34; // Diameter for each larger semicircle
-let diameter2 = 25; // Diameter for each smaller semicircle
-let spacing1 = 37;  // Spacing between the bottom most semicircles
+let bottomX = 111; // X position of the semicircles at bottom most(1-5)
+let bottomY = 494;  // Y position of semicircles at the bottom most(1-5)
+let diameter1 = 34; // Diameter of the semicircles at bottom most(1-5)+bottom big(2&3)
+let diameter2 = 25; // Diameter of the semicircles at bottom (2&3)
+let spacing1 = 37;  // Spacing between the bottom most semicircles (1-5)
 let spacing2 = 105; // Spacing for bottom big semicircles(1&4)
 let spacing3 = 43;  // Spacing for bottom small semicircles(2&3)
 let topX1 = 148;  // X position for bottom big semicircles(1&4)
 let topX2 = 180; // X position for bottom small semicircles(2&3) 
-let topY = 445; // Y position for bottom big+small semicircles
+let topY = 445; // Y position for bottom big+small semicircles(1-4)
 
 function preload() {
    // Preload background image
@@ -20,11 +20,14 @@ function preload() {
 // Positions and sizes for circles
 let circlePositions = [
     [85,40],[85,85],[90,120],[114,130],[122,153],[120,183],[125,224],[150,248],[175,252],[198,247],
-    [222,253],[247,250],[272,248],[280,218],[285,190],[289,158],[285,125],[300,120],[325,125],[350,134],
-    [358,115],[180,165],[170,185],[190,183],[210,204],[230,185],[241,170],[210,230],
+    [222,253],[247,250],[272,248],[280,218],[285,190],[289,158],[285,125],[300,120],[325,125],[350,134],[358,115],
+    [180,165],[170,185],[190,183],[210,204],[230,185],[241,170],[210,230],
     [210,289],[200,340],[202,385],[208,410],[200,432]
 ];
-let circleDiameters = [50, 43, 29, 27, 23, 40, 53, 28, 26, 20, 31, 22, 33, 35, 25, 44, 20, 15, 33, 22, 20, 16, 16, 26, 35, 22, 16, 20, 47, 61, 30, 23, 23];
+let circleDiameters = [50, 43, 29, 27, 23, 40, 53, 28, 26, 20, 
+    31, 22, 33, 35, 25, 44, 20, 15, 33, 22, 20, 
+    16, 16, 26, 35, 22, 16, 20, 
+    47, 61, 30, 23, 23];
 
 function setup() {
    createCanvas(400, 600);
@@ -37,11 +40,11 @@ function setup() {
   
 class MyCircleClass {
    constructor(x, y, size) {
-     this.x = x;    // X position of circle
+     this.x = x; // X position of circle
 
-     this.y = y;     // Y position of circle
+     this.y = y; // Y position of circle
 
-     this.size = size;     // Size of circle
+     this.size = size; // Size of circle
 
      // Stroke weight for circle outline
      this.stroke = 0; 
@@ -100,25 +103,25 @@ function draw() {
     // Rightmost small green semicircle 6
     arc(285, 494, 19, 28, PI, 0, fill(142, 171, 126));
 
-    // semicircles bottom 1&4
+    // Semicircles bottom big 1&4
     for (let i = 0; i < 2; i++) {
       fill(i % 2 === 0 ? color(142, 171, 126) : color(228, 102, 103));
       arc(topX1 + i * spacing2, topY, diameter1, diameter1, 0, PI);
     }
 
-    // Semicircles bottom 2&3
+    // Semicircles bottom small 2&3
     for (let i = 0; i < 2; i++) {
       fill(i % 2 === 0 ? color(228, 102, 103) : color(142, 171, 126));
       arc(topX2 + i * spacing3, topY, diameter2, diameter2, 0, PI);
   }
 
-    // semicircles bottom most 1&2&3
+    // Semicircles bottom most 1&2&3
     for (let i = 0; i < 3; i++) {
         fill(i % 3 === 0 ? color(142, 171, 126) : (i % 3 === 1 ? color(217, 194, 125) : color(228, 102, 103)));
         arc(bottomX + i * spacing1, bottomY, diameter1, diameter1, PI, 0);
     }
 
-    // semicircles bottom most 4&5
+    // Semicircles bottom most 4&5
     for (let i = 0; i < 2; i++) {
         fill(i % 2 === 0 ? color(228, 102, 103) : color(217, 194, 125));
         arc(bottomX + i * spacing1 + 110, bottomY, diameter1, diameter1, PI, 0);
