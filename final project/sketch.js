@@ -2,23 +2,33 @@ let myCircles = [];
 let numOfCircles = 33;
 let bgImage
 let newImage
-
+let bottomX = 85;  // 第一个半圆的 X 位置
+let bottomY = 595;      // 半圆的 Y 位置
+let diameter1 = 45; // 每个半圆的直径
+let diameter2 = 25; // 每个半圆的直径
+let spacing1 = 49;  // 半圆之间的间距
+let spacing2 = 145
+let spacing3 = 75
+let topX1 = 135
+let topX2 = 170
+let topY = 520
 function preload() {
    // 预加载背景图片
    //bgImage = loadImage('assets/background.jpg')
    newImage = loadImage('assets/1.jpeg')
 }
 
-let circlePositions =[[85,45],[85,85],[90,120],[110,130],[120,150],[120,180],[125,225],[150,250],[175,255],[200,250],
-[220,255],[245,250],[270,250],[280,220],[285,190],[290,160],[285,125],[300,120],[325,125],[345,135],[355,115],
-[180,165],[170,185],[190,185],[210,205],[230,185],[240,175],[210,230],
-[210,290],[200,340],[205,385],[210,410],[195,430]
+let circlePositions =[[85,40],[85,85],[90,120],[114,130],[122,153],[120,183],[125,224],[150,248],[175,252],[198,247],
+[222,253],[247,250],[272,248],[280,218],[285,190],[289,158],[285,125],[300,120],[325,125],[350,134],[358,115],
+[180,165],[170,185],[190,183],[210,204],[230,185],[241,170],[210,230],
+[210,289],[200,340],[202,385],[208,410],[195,430]
 ];
 
-let circleDiameters = [50, 40, 30, 30, 25, 40, 50, 30, 30, 25,
-35, 25, 35, 35, 30, 45, 20, 15, 35, 20, 20,
-20, 20, 30, 35, 25, 20, 20,
-50, 65, 30, 25, 35];
+
+let circleDiameters = [50, 43, 29, 27, 23, 40, 53, 28, 26, 20,
+31, 22, 33, 35, 25, 44, 20, 15, 33, 22, 20,
+16, 16, 26, 35, 22, 16, 20,
+47, 61, 30, 23, 35];
 
 function setup(){
    createCanvas(400,600);
@@ -83,14 +93,29 @@ function draw() {
     rect(256, 520, 48, 75)
     fill(217, 194, 125)
     rect(304, 520, 28, 75)
-    let startX = 90;  // 第一个半圆的 X 位置
-    let y = 595;      // 半圆的 Y 位置
-    let diameter = 45; // 每个半圆的直径
-    let spacing = 48;  // 半圆之间的间距
+
   
-    for (let i = 0; i < 5; i++) {
+    arc(319,595,27,35,PI,0,fill(228, 102, 103))
+
+    for (let i = 0; i < 2; i++) {
       fill(i % 2 === 0 ? color(142, 171, 126) : color(228, 102, 103));
-      arc(startX + i * spacing, y, diameter, diameter, PI, 0);
+      arc(topX1 + i * spacing2, topY, diameter1, diameter1, 0, PI);
+    }
+    for (let i = 0; i < 5; i++) {
+        fill(i % 3 === 0 ? color(142, 171, 126) : (i % 3 === 1 ? color(217, 194, 125) : color(228, 102, 103)));
+        arc(bottomX + i * spacing1, bottomY, diameter1, diameter1, PI, 0);
+    }
+    for (let i = 0; i < 2; i++) {
+        fill(i % 2 === 0 ? color(228, 102, 103) : color(142, 171, 126));
+        arc(topX1 + i * spacing2, topY, diameter1, diameter1, PI, 0);
+    }
+    for (let i = 0; i < 2; i++) {
+        fill(i % 2 === 0 ? color(228, 102, 103) : color(142, 171, 126));
+        arc(topX2 + i * spacing3, topY, diameter2, diameter2, 0, PI);
+    }
+    for (let i = 0; i < 2; i++) {
+        fill(i % 2 === 0 ? color(142, 171, 126) : color(228, 102, 103));
+        arc(topX2 + i * spacing3, topY, diameter2, diameter2, PI, 0);
     }
 }
 
