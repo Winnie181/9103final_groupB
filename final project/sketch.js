@@ -1,6 +1,6 @@
 let myCircles = [];
 let numOfCircles = 33;
-let bgImage
+let bgImage //背景图
 let bottomX = 111;  // 第一个半圆的 X 位置
 let bottomY = 494;      // 半圆的 Y 位置
 let diameter1 = 34; // 每个半圆的直径
@@ -22,7 +22,6 @@ let circlePositions =[[85,40],[85,85],[90,120],[114,130],[122,153],[120,183],[12
 [210,289],[200,340],[202,385],[208,410],[200,432]
 ];
 
-
 let circleDiameters = [50, 43, 29, 27, 23, 40, 53, 28, 26, 20,
 31, 22, 33, 35, 25, 44, 20, 15, 33, 22, 20,
 16, 16, 26, 35, 22, 16, 20,
@@ -41,14 +40,9 @@ function setup(){
      this.x = x;
      this.y = y;
      this.size = size;
-     this.speed = 2;
+     this.stroke = 0
      this.color1 = color(228, 102, 103);
      this.color2 = color(142, 171, 126);
-     this.stroke = color(0)
-     this.originalX = x;
-     this.originalY = y;
-     this.isMoving = false;
-  
     }
   
     draw(){
@@ -57,49 +51,38 @@ function setup(){
      arc(this.x,this.y,this.size,this.size, HALF_PI, -HALF_PI, PIE);
      fill(this.color2);
      arc(this.x,this.y,this.size,this.size, -HALF_PI, HALF_PI, PIE);
-  
     }
-    move(){
-     if (this.isMoving){
-      this.x += this.speed;
-     }
-    }
-   }
+}
   
 function draw() {
   background(bgImage);
 
     for (let i = 0; i < numOfCircles; i++){
       myCircles[i].draw()
-      myCircles[i].move()
     }
+
     stroke(0)
     strokeWeight(2);
-  
-     //底部绿色矩形
+    //底部绿色矩形
     fill(142, 171, 126);
     rect(27, 450, 345, 55,);
- 
     //两边的竖线
     line(65, 450, 65, 505);
     line(340, 450, 340, 505);
     //底部黄色较大矩形    
-
     fill(217, 194, 125);
     rect(92, 444, 204, 52);
     //底部红色小矩形    
     stroke(217, 194, 125)
-    strokeWeight(2);
     fill(228, 102, 103);
     rect(130,446,35,48);
     //底部绿色小矩形
     fill(142, 171, 126);
     rect(165, 446, 37, 48)
     rect(237, 446, 35, 48)
-
-
+    //最右边的绿色小半圆
     arc(285,494,19,28,PI,0,fill(142, 171, 126))
-
+    //底座的半圆
     for (let i = 0; i < 2; i++) {
       fill(i % 2 === 0 ? color(142, 171, 126) : color(228, 102, 103));
       arc(topX1 + i * spacing2, topY, diameter1, diameter1, 0, PI,);
@@ -123,7 +106,6 @@ function draw() {
         fill(i % 2 === 0 ? color(228, 102, 103) : color(142, 171, 126));
         arc(topX1 + i * spacing2, topY, diameter1, diameter1, PI, 0);
     }
-
     for (let i = 0; i < 2; i++) {
         fill(i % 2 === 0 ? color(142, 171, 126) : color(228, 102, 103));
         arc(topX2 + i * spacing3, topY, diameter2, diameter2, PI, 0);
@@ -131,14 +113,4 @@ function draw() {
     stroke(217, 194, 125)
     strokeWeight(2);
     line(130, 446, 270, 446);
-
 }
-
-
-  
-function mousePressed(){
-  for (let i = 0; i< numOfCircles; i++){
-  myCircles[i].isMoving = true;
-  }
- }
-
