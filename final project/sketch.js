@@ -1,18 +1,24 @@
 let myCircles = [];
-let numOfCircles = 27;
+let numOfCircles = 33;
 let bgImage
 let newImage
 
 function preload() {
    // 预加载背景图片
    //bgImage = loadImage('assets/background.jpg')
-   newImage = loadImage('assets/1.jepg')
+   newImage = loadImage('assets/1.jpeg')
 }
 
-let circlePositions =[[85,45],[85,85],[90,120],[110,130],[120,150],[120,180],[125,225],[150,250],[175,255],[220,255],[245,250],[270,250],[280,220],
-[285,190],[290,160],[285,125],[300,120],[325,125],[345,135],[355,115],[180,165],[170,185],[190,185],[210,205],[230,185],[240,175],[210,230]];
+let circlePositions =[[85,45],[85,85],[90,120],[110,130],[120,150],[120,180],[125,225],[150,250],[175,255],[200,250],
+[220,255],[245,250],[270,250],[280,220],[285,190],[290,160],[285,125],[300,120],[325,125],[345,135],[355,115],
+[180,165],[170,185],[190,185],[210,205],[230,185],[240,175],[210,230],
+[210,290],[200,340],[205,385],[210,410],[195,430]
+];
 
-let circleDiameters = [50, 40, 30, 30, 25, 40, 50, 30, 30,35, 25, 35, 35, 30, 45, 20, 15, 35, 20, 20,20, 20, 30, 35, 25, 20, 20];
+let circleDiameters = [50, 40, 30, 30, 25, 40, 50, 30, 30, 25,
+35, 25, 35, 35, 30, 45, 20, 15, 35, 20, 20,
+20, 20, 30, 35, 25, 20, 20,
+50, 65, 30, 25, 35];
 
 function setup(){
    createCanvas(400,600);
@@ -51,8 +57,7 @@ function setup(){
    }
   
 function draw() {
-  //background(bgImage);
-  background(newImage)
+  background(newImage);
 
     for (let i = 0; i < numOfCircles; i++){
       myCircles[i].draw()
@@ -80,10 +85,10 @@ function draw() {
     rect(304, 520, 28, 75)
     let startX = 90;  // 第一个半圆的 X 位置
     let y = 595;      // 半圆的 Y 位置
-    let diameter = 50; // 每个半圆的直径
-    let spacing = 80;  // 半圆之间的间距
+    let diameter = 45; // 每个半圆的直径
+    let spacing = 48;  // 半圆之间的间距
   
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       fill(i % 2 === 0 ? color(142, 171, 126) : color(228, 102, 103));
       arc(startX + i * spacing, y, diameter, diameter, PI, 0);
     }
